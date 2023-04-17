@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="list-table-item-area">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header-table">
+                        <div class="card-header">
+                        <h4 class="card-title" > Mission Table</h4>
+                        <button [routerLink]="['/admin/competence/add']" class="btn btn-primary btn-round">Add Mission</button>
+                        </div>
+                    </div>
+
+                    <app-edit-competence *ngIf="editCompetenceModal" [modalEditCompetence]="editCompetenceModal"
+                                      [competenceId]="getcompetenceId"
+                                      (closeModalMission)="closeModalCompetence($event)"
+                    ></app-edit-competence>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>Id</th>
+                                    <th>Competence Name</th>
+                                    <th>Actions</th>
+                                </thead>
+                                <tbody *ngFor="let competenceList of CompetenceList">
+                                    <tr>
+                                        <td>{{competenceList.id}}</td>
+                                        <td>{{competenceList.cname}}</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-round" (click)="EditCompetence(competenceList.id)">edit</button>
+                                            <button class="btn btn-primary btn-round" (click)="deleteCompetence(competenceList.id)">delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
