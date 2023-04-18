@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Mymission } from 'src/app/_models/Mymission';
 import { Competence } from 'src/app/_models/competence';
@@ -11,6 +11,8 @@ import { MymissionService } from 'src/app/_services/mymission.service';
   styleUrls: ['./add-mission.component.css']
 })
 export class AddMissionComponent implements OnInit {
+
+ idMissionForm:any
 
   hideForm = false;
   mission : Mymission = new Mymission()
@@ -35,11 +37,12 @@ export class AddMissionComponent implements OnInit {
   }
 
   addMission(){
-    this._missionService.addMission(this.mission).subscribe({
-      error:(err:any) => console.log(err),
-      next : ()=> this._router.navigateByUrl('/admin/mission')
+    this._missionService.addMission(this.mission).subscribe((res:any)=>{
+      this.mission = res.body
+      this.idMissionForm=this.mission.id
   })
   console.log(this.mission)
+  console.log(this.idMissionForm)
   }
 
   selectCompetence(competence: any) {      
@@ -47,8 +50,8 @@ export class AddMissionComponent implements OnInit {
       this.myValues =this.selectedCompetence
   }
 
-  affectCompetenceToMission($event:any){
-    this._missionService.affectCompToMiss($event,this.myValues).subscribe((data:any)=>{
+  affectCompetenceToMission(){
+    this._missionService.affectCompToMiss(this.idMissionForm,this.myValues).subscribe((data:any)=>{
       console.log(data)
     })
   }
