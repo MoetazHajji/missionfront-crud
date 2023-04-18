@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Mymission } from 'src/app/_models/Mymission';
 import { MymissionService } from 'src/app/_services/mymission.service';
 
@@ -14,19 +15,31 @@ export class EditMissionComponent implements OnInit {
   @Output() closeModalEditMission=new EventEmitter<boolean>(); 
   @Output() refreshMission=new EventEmitter<boolean>();
 
-  mission:Mymission = new Mymission()
+  mission!:Mymission
   path: any = false;
   hideForm = false;
   submitted = false;
   editProductForm:any
 
+  id!:any
+
   constructor(
-    private _missionService:MymissionService
+    private _missionService:MymissionService,
+    private v:ActivatedRoute,
+    private _router : Router
   ) { } 
 
   ngOnInit(): void {
-    this._missionService.getMissionById(this.missionId).subscribe((res:any)=>{
-      this._missionService=res
+    this.id=this.v.snapshot.params['id']
+    this._missionService.getMissionById(this.id).subscribe((res:any)=>{
+      this.mission=res.body
+    })
+  }
+
+  editMission(){
+    this._missionService.updateMission(this.mission).subscribe({
+      next:()=> this._router.navigateByUrl('/admin/mission'),
+      error:(err:any) => console.log(err)
     })
   }
 

@@ -1,6 +1,6 @@
 <div class="container" >
     <div class="add-Area">
-        <div class="row" *ngIf="hideForm">
+        <div class="row">
             <div class="col-md-8">
             <div class="card card-user">
                 <div class="card-header">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="row">
                     <div class="update ml-auto mr-auto">
-                        <button type="submit" class="btn btn-primary btn-round" (click)="addMission()">Add Mission</button>
+                        <button type="submit" class="btn btn-primary btn-round" (click)="idMiss=mission.id" data-toggle="modal" data-target="#exampleModal">Add Mission</button>
                     </div>
                     </div>
                 </form>
@@ -58,3 +58,42 @@
         </div>
     </div>
 </div>
+
+<div class="add-Area">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col-md-8">
+                <div class="card card-user">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title" id="exampleModalLabel">Select Competence</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>           
+                    <div class="modal-footer"> 
+                    <ul class="competence-container" >
+                        <li class="competence" [class.selected]="competence.cname" *ngFor="let competence of competenceList" (click)="selectCompetence(competence)">
+                        {{ competence.cname }}
+                        </li>
+                    </ul>
+                    <div>
+                        <button class="btn-primary" (click)="affectCompetenceToMission(5)">Affecter</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+    
+    myModal.addEventListener('shown.bs.modal', function () {
+      myInput.focus()
+    })
+    </script>

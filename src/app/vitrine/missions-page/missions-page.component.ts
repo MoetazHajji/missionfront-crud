@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Mymission } from 'src/app/_models/Mymission';
 import { MymissionService } from 'src/app/_services/mymission.service';
 
@@ -13,13 +14,20 @@ export class MissionsPageComponent implements OnInit {
   missionList:Mymission[]=[]
   
   constructor(
-    private _missionService : MymissionService
+    private _missionService : MymissionService,
+    private _router : Router
   ) { }
 
   ngOnInit(): void {
     this._missionService.getAllMissions().subscribe((res:any)=>{
       this.missionList = res
     console.log(this.missionList)
+    })
+  }
+
+  participateToMission(id:any , name:any){
+    this._missionService.participateToMission(id,name).subscribe({
+      next : ()=> this._router.navigateByUrl('/mission')
     })
   }
 

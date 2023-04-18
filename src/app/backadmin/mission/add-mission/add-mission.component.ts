@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Mymission } from 'src/app/_models/Mymission';
 import { Competence } from 'src/app/_models/competence';
+import { CompetenceService } from 'src/app/_services/competence.service';
 import { MymissionService } from 'src/app/_services/mymission.service';
 
 @Component({
@@ -11,16 +12,26 @@ import { MymissionService } from 'src/app/_services/mymission.service';
 })
 export class AddMissionComponent implements OnInit {
 
-  hideForm = true;
+  hideForm = false;
   mission : Mymission = new Mymission()
   competenceList: Competence[]=[]
+  idMiss : any
+  
+  myValues: Competence[] = [];
+  
+  selectedCompetence:Competence[]=[];
 
   constructor(
     private _missionService : MymissionService,
-    private _router : Router
-  ) { }
+    private _router : Router,
+    private _cmptService : CompetenceService
+  ) {
+  }
 
   ngOnInit(): void {
+    this._cmptService.getAll().subscribe((res:any)=>{
+      this.competenceList = res.body
+    })
   }
 
   addMission(){
@@ -30,5 +41,17 @@ export class AddMissionComponent implements OnInit {
   })
   console.log(this.mission)
   }
+
+  selectCompetence(competence: any) {      
+      this.selectedCompetence.push(competence.id);
+      this.myValues =this.selectedCompetence
+  }
+
+  affectCompetenceToMission($event:any){
+    this._missionService.affectCompToMiss($event,this.myValues).subscribe((data:any)=>{
+      console.log(data)
+    })
+  }
+
 
 }

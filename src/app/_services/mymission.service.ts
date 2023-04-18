@@ -24,7 +24,7 @@ export class MymissionService {
    }
 
    addMission(mission : Mymission) : Observable<HttpResponse<any>>{
-    return this.http.post(`${this.url}/Mymission/addWC` , mission , {observe : 'response'})
+    return this.http.post(`${this.url}/Mymission/add` , mission , {observe : 'response'})
    } 
 
    updateMission(mission:Mymission) : Observable<HttpResponse<any>>{
@@ -33,6 +33,14 @@ export class MymissionService {
 
    deleteMission(id : any) : Observable<HttpResponse<any>>{
     return this.http.delete(`${this.url}/Mymission/delete/${id}` , {observe : 'response'})
+   }
+
+   participateToMission(id:any , name:any) : Observable<HttpResponse<any>>{
+    return this.http.put(`${this.url}/Mymission/addWtUser/${id}` , name ,{observe : 'response'});
+   }
+
+   affectCompToMiss(idM:any , idComp:any[] ) : Observable<HttpResponse<any>>{
+    return this.http.put(`${this.url}/Mymission/addWC/${idM}`, idComp,{observe : 'response'})
    }
 
 }
