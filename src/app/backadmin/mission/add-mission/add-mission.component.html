@@ -24,13 +24,13 @@
                     <div class="col-md-6 pr-1">
                         <div class="form-group">
                         <label for="dateDebut">Start Date</label>
-                        <input type="date" class="form-control" placeholder="Start Date" id="dateDebut" name="dateDebut" #title="ngModel" [(ngModel)]="mission.dateDebut">
+                        <input type="date" class="form-control" placeholder="Start Date" id="dateDebut" name="dateDebut" #dateDebut="ngModel" [(ngModel)]="mission.dateDebut">
                         </div>
                     </div>
                     <div class="col-md-6 pl-1">
                         <div class="form-group">
                         <label for="dateFin">End Date</label>
-                        <input type="date" class="form-control" placeholder="dateFin" id="dateFin" name="dateFin"  #title="ngModel" [(ngModel)]="mission.dateFin">
+                        <input type="date" class="form-control" placeholder="dateFin" id="dateFin" name="dateFin"  #dateDebut="ngModel" [(ngModel)]="mission.dateFin">
                         </div>
                     </div>
                     </div>                
@@ -38,10 +38,10 @@
                     <div class="col-md-12">
                         <div class="form-group">
                         <label for="location">Location</label>
-                        <input type="text" class="form-control" placeholder="Location" id="location" name="location" #title="ngModel" [(ngModel)]="mission.location"  required minlength="3">
-                        <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
-                            <div *ngIf="title.errors?.['required']">Title is required</div>
-                            <div *ngIf="title.errors?.['minlength']">Title must have at least 3 characters</div>
+                        <input type="text" class="form-control" placeholder="Location" id="location" name="location" #location="ngModel" [(ngModel)]="mission.location"  required minlength="3">
+                        <div class="alert alert-danger" *ngIf="location.touched && location.invalid">
+                            <div *ngIf="location.errors?.['required']">Location is required</div>
+                            <div *ngIf="location.errors?.['minlength']">Location must have at least 3 characters</div>
                         </div>
                         </div>
                     </div>
@@ -50,10 +50,10 @@
                     <div class="col-md-12">
                         <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea id="description" name="description"  class="form-control textarea" #title="ngModel" [(ngModel)]="mission.description"  required minlength="3">Describe and sharer your mission </textarea>
-                        <div class="alert alert-danger" *ngIf="title.touched && title.invalid">
-                            <div *ngIf="title.errors?.['required']">Title is required</div>
-                            <div *ngIf="title.errors?.['minlength']">Title must have at least 3 characters</div>
+                        <textarea id="description" name="description"  class="form-control textarea" #description="ngModel" [(ngModel)]="mission.description"  required minlength="3">Describe and sharer your mission </textarea>
+                        <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+                            <div *ngIf="description.errors?.['required']">Description is required</div>
+                            <div *ngIf="description.errors?.['minlength']">Description must have at least 3 characters</div>
                         </div>
                         </div>
                     </div>
