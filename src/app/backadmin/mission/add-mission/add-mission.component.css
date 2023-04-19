@@ -33,3 +33,11 @@
     border-style: solid;
     border-color: transparent transparent #0077B5 transparent;
   }
+
+  .Modal-Area {
+    padding: 50 50 50px;
+  }
+
+  li.selected {
+    display: flex;
+  }

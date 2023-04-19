@@ -29,13 +29,4 @@ export class MissionComponent implements OnInit {
       next:()=>this.MissionList=this.MissionList.filter((p)=>p.id!=id)
     })
   }
-
-  closeModalMission($event : any) : void{
-    this.editMissionModal = $event
-  }
-
-  EditMission(event: any){
-    this.getMissionId = event
-    this.editMissionModal = !this.editMissionModal;
-  }
 }

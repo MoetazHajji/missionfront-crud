@@ -10,14 +10,8 @@ import { MymissionService } from 'src/app/_services/mymission.service';
 })
 export class EditMissionComponent implements OnInit {
 
-  @Input() modalEditMission:boolean=true ;
-  @Input() missionId : any
-  @Output() closeModalEditMission=new EventEmitter<boolean>(); 
-  @Output() refreshMission=new EventEmitter<boolean>();
-
   mission!:Mymission
   path: any = false;
-  hideForm = false;
   submitted = false;
   editProductForm:any
 

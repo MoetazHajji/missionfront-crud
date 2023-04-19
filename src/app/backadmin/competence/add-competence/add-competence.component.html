@@ -13,12 +13,16 @@
                         <div class="form-group">
                         <label for="cname">Competence Name</label>
                         <input type="text" class="form-control" placeholder="Competence Name" id="cname" name="cname" #cname="ngModel" [(ngModel)]="competence.cname">
+                            <div class="alert alert-danger" *ngIf="cname.touched && cname.invalid">
+                                <div *ngIf="cname.errors?.['required']">Competence name is required</div>
+                                <div *ngIf="cname.errors?.['minlength']">Competence name must have at least 3 characters</div>
+                            </div>
                         </div>
                     </div>
                     </div>
                     <div class="row">
                     <div class="update ml-auto mr-auto">
-                        <button type="submit" class="btn btn-primary btn-round" (click)="addCompetence()">Add Competence</button>
+                        <button type="submit" class="btn btn-primary btn-round" [disabled]="f.invalid" (click)="addCompetence()" >Add Competence</button>
                     </div>
                     </div>
                 </form>
