@@ -10,7 +10,6 @@ import { CompetenceService } from 'src/app/_services/competence.service';
 })
 export class AddCompetenceComponent implements OnInit {
 
-  hideForm = true;
   competence:Competence = new Competence()
 
   constructor(
@@ -24,7 +23,7 @@ export class AddCompetenceComponent implements OnInit {
   addCompetence(){
     this._CmtService.addComptence(this.competence).subscribe({
       error :(err:any) => console.log(err),
-      //next : ()=> this._router.navigateByUrl('/admin/competence')
+      next : ()=> this._router.navigateByUrl('/admin/competence')
     })
   }
 

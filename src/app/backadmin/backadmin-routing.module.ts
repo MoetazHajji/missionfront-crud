@@ -6,6 +6,7 @@ import { AddMissionComponent } from './mission/add-mission/add-mission.component
 import { CompetenceComponent } from './competence/competence.component';
 import { AddCompetenceComponent } from './competence/add-competence/add-competence.component';
 import { EditMissionComponent } from './mission/edit-mission/edit-mission.component';
+import { EditCompetenceComponent } from './competence/edit-competence/edit-competence.component';
 const routes: Routes = [{ 
   path: 'mission', component: AdminLayoutComponent,
   children :[
@@ -33,6 +34,10 @@ const routes: Routes = [{
       {
         path:'add',
         component : AddCompetenceComponent
+      },
+      {
+        path:'edit/:id',
+        component: EditCompetenceComponent
       }
   ]
  }

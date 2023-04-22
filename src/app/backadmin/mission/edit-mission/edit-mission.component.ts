@@ -11,10 +11,6 @@ import { MymissionService } from 'src/app/_services/mymission.service';
 export class EditMissionComponent implements OnInit {
 
   mission!:Mymission
-  path: any = false;
-  submitted = false;
-  editProductForm:any
-
   id!:any
 
   constructor(

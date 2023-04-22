@@ -7,5 +7,6 @@ export class Mymission{
     location?:string;
     dateDebut?:Date;
     dateFin?:Date;
+    nbPlaces?:number;
     competences!:Competence[]
 }

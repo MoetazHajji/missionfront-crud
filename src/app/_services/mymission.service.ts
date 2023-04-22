@@ -43,4 +43,8 @@ export class MymissionService {
     return this.http.put(`${this.url}/Mymission/addWC/${idM}`, idComp,{observe : 'response'})
    }
 
+   getNbPlaces(idM : any) : Observable<HttpResponse<any>>{
+    return this.http.get(`${this.url}/Mymission/nbPlaces/${idM}`,{observe : 'response'})
+   } 
+
 }

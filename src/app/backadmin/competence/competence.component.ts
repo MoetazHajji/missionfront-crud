@@ -10,7 +10,6 @@ import { CompetenceService } from 'src/app/_services/competence.service';
 export class CompetenceComponent implements OnInit {
 
   CompetenceList:Competence [] = []
-  @Input() getcompetenceId : any
   editCompetenceModal:boolean = false;
 
   constructor(
@@ -19,18 +18,9 @@ export class CompetenceComponent implements OnInit {
 
   ngOnInit(): void {
     this._CmtService.getAll().subscribe((res:any)=>{
-      this.CompetenceList=res
+      this.CompetenceList=res.body
       console.log(this.CompetenceList)
     })
-  }
-
-  closeModalCompetence($event : any) : void{
-    this.editCompetenceModal = $event
-  }
-
-  EditCompetence(event :any){
-    this.getcompetenceId = event
-    this.editCompetenceModal = !this.editCompetenceModal
   }
 
   deleteCompetence(event:any){

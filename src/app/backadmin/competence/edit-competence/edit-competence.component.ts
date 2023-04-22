@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Competence } from 'src/app/_models/competence';
+import { CompetenceService } from 'src/app/_services/competence.service';
 
 @Component({
   selector: 'app-edit-competence',
@@ -8,20 +10,29 @@ import { Competence } from 'src/app/_models/competence';
 })
 export class EditCompetenceComponent implements OnInit {
 
-  @Input() modalEditCompetence:boolean=true ;
-  @Input() competenceId : any
-  @Output() closeModalEditMission=new EventEmitter<boolean>(); 
-  @Output() refreshMission=new EventEmitter<boolean>();
-
   competence:Competence = new Competence()
   path: any = false;
-  hideForm = false;
-  submitted = false;
-  editProductForm:any
+  competenceId!: any
 
-  constructor() { }
+
+  constructor(
+    private _cmptService : CompetenceService,
+    private _router : Router,
+    private v:ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.competenceId=this.v.snapshot.params['id']
+    this._cmptService.getById(this.competenceId).subscribe((res:any) =>{
+      this.competence = res.body
+    })
+  }
+
+  editCompetence(){
+    this._cmptService.editCompetence(this.competence).subscribe({
+      next :() => this._router.navigateByUrl('/admin/competence'),
+      error:(err:any) => console.log(err)
+    })
   }
 
 }

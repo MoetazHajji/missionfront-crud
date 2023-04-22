@@ -19,6 +19,15 @@
                         </div>
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                        <label for="nbPlaces">Nombre du place</label>
+                        <input type="number" class="form-control" placeholder="0" id="nbPlaces" name="nbPlaces" #nbPlaces="ngModel" [(ngModel)]="mission.nbPlaces"  required>
+                        <div class="alert alert-danger" *ngIf="nbPlaces.touched && nbPlaces.invalid">
+                            <div *ngIf="nbPlaces.errors?.['required']">Nombre du place is required</div>
+                        </div>
+                        </div>
+                    </div>
                     </div>         
                     <div class="row">
                     <div class="col-md-6 pr-1">
@@ -74,7 +83,7 @@
         <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                 <div class="card card-user">
                     <div class="modal-header text-center">
                         <h5 class="modal-title" id="exampleModalLabel">Select Competence</h5>
@@ -105,4 +114,4 @@
     myModal.addEventListener('shown.bs.modal', function () {
       myInput.focus()
     })
-    </script>
+</script>
