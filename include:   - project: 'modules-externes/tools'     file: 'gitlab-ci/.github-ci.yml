@@ -1,5 +1,0 @@
-include:
-  - project: 'modules-externes/tools'
-    file: 'gitlab-ci/ci-npm.yml'
-  - project: 'modules-externes/tools'
-    file: 'gitlab-ci/auto-mr.yml'
